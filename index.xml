@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lucio Zanette</title>
-    <link>https://luciozanette.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Lucio Zanette</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 09 May 2025 18:02:25 -0300</lastBuildDate>
-    <atom:link href="https://luciozanette.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Quickly Finding Large Files</title>
-      <link>https://luciozanette.github.io/posts/first-blog/</link>
+      <link>http://localhost:1313/posts/first-blog/</link>
       <pubDate>Fri, 09 May 2025 17:20:08 -0300</pubDate>
-      <guid>https://luciozanette.github.io/posts/first-blog/</guid>
+      <guid>http://localhost:1313/posts/first-blog/</guid>
       <description>Quickly Finding Large Files Problem/Need Your disk is running out of space, and you need to quickly identify which files are taking up the most room on your Linux system.&#xA;Main Tip/Command Use the find command combined with du and sort to list files by size:&#xA;find / -type f -size +1G -print0 | xargs -0 du -h | sort -rh Brief Command Explanation find /: Starts searching from the root directory (/).</description>
     </item>
   </channel>

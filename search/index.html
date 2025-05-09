@@ -1,0 +1,52 @@
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8">
+  <title>Search</title>
+  <script src="https://unpkg.com/lunr/lunr.js"></script>
+  <style>
+    body { font-family: monospace; background: #111; color: #eee; padding: 2rem; }
+    input[type="text"] { width: 100%; padding: 0.5rem; background: #222; color: #fff; border: none; }
+    .result { margin-top: 1rem; padding: 0.5rem; background: #222; }
+  </style>
+</head>
+<body>
+  <h1>Search</h1>
+  <input type="text" id="searchBox" placeholder="Type to search..." autofocus>
+  <div id="results"></div>
+
+  <script>
+    let idx = null;
+    let store = {};
+
+    fetch('/index.json')
+      .then(response => response.json())
+      .then(data => {
+        store = data;
+        idx = lunr(function () {
+          this.ref('href');
+          this.field('title');
+          this.field('content');
+
+          for (const page of store) {
+            this.add(page);
+          }
+        });
+      });
+
+    document.getElementById('searchBox').addEventListener('input', function () {
+      const query = this.value;
+      const results = idx.search(query);
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '';
+
+      results.forEach(result => {
+        const item = store.find(p => p.href === result.ref);
+        const el = document.createElement('div');
+        el.className = 'result';
+        el.innerHTML = `<a href="${item.href}" style="color:#6cf">${item.title}</a>`;
+        resultsDiv.appendChild(el);
+      });
+    });
+  </script>
+</body>
+</html>

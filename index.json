@@ -1,0 +1,8 @@
+[
+  {
+    "title": "Quickly Finding Large Files",
+    "href": "/posts/first-blog/",
+    "content": "Quickly Finding Large Files Problem/Need Your disk is running out of space, and you need to quickly identify which files are taking up the most room on your Linux system.\nMain Tip/Command Use the find command combined with du and sort to list files by size:\nfind / -type f -size +1G -print0 | xargs -0 du -h | sort -rh Brief Command Explanation find /: Starts searching from the root directory (/). You can replace / with a specific directory like ~ (your home directory) or /var/log. -type f: Tells find to look only for files (f stands for file). -size +1G: Filters files larger than 1 Gigabyte. You can adjust this (e.g., +500M for more than 500 Megabytes, +100k for more than 100 Kilobytes). -print0: Outputs the file names separated by a null character. This is useful when filenames contain spaces or special characters. | xargs -0 du -h: The pipe | sends the output of find to xargs. xargs -0 reads null-separated input. du -h estimates the disk usage of each file in a human-readable format (e.g., 1K, 234M, 2G). | sort -rh: Sends the output of du to sort. sort -rh sorts the lines in reverse order (-r, from largest to smallest), and interprets human-readable sizes (-h). Use Cases/Variations Search the current directory and subdirectories for files larger than 100MB: find . -type f -size +100M -print0 | xargs -0 du -h | sort -rh List the 10 largest files in the /var/log directory: find /var/log -type f -print0 | xargs -0 du -h | sort -rh | head -n 10 (We add | head -n 10 to display only the top 10 largest files.)\n"
+  }
+]
+
