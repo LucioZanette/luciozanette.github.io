@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
   
-    <title>First Blog :: Lucio Zanette</title>
+    <title>Quickly Finding Large Files :: Lucio Zanette</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="" />
-<meta name="keywords" content=", " />
+<meta name="description" content="Quickly Finding Large Files Problem/Need Your disk is running out of space, and you need to quickly identify which files are taking up the most room on your Linux system.
+Main Tip/Command Use the find command combined with du and sort to list files by size:
+find / -type f -size &#43;1G -print0 | xargs -0 du -h | sort -rh Brief Command Explanation find /: Starts searching from the root directory (/)." />
+<meta name="keywords" content="Linux, Shell, Commands, Disk Management, find, du, sort, Quick Tip" />
 
   <meta name="robots" content="noodp" />
 
@@ -75,14 +77,14 @@
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="First Blog">
-<meta property="og:description" content="" />
+<meta property="og:title" content="Quickly Finding Large Files">
+<meta property="og:description" content="Quickly Finding Large Files Problem/Need Your disk is running out of space, and you need to quickly identify which files are taking up the most room on your Linux system.
+Main Tip/Command Use the find command combined with du and sort to list files by size:
+find / -type f -size &#43;1G -print0 | xargs -0 du -h | sort -rh Brief Command Explanation find /: Starts searching from the root directory (/)." />
 <meta property="og:url" content="https://luciozanette.github.io/posts/first-blog/" />
 <meta property="og:site_name" content="Lucio Zanette" />
 
-  
-  
-  <meta property="og:image" content="https://luciozanette.github.io/">
+  <meta property="og:image" content="https://luciozanette.github.io/og-image.png">
 
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
@@ -112,7 +114,7 @@
     <div class="header__logo">
       <a href="/">
   <div class="logo">
-    Lucio@terminal
+    Lucio Zanette
   </div>
 </a>
 
@@ -165,25 +167,44 @@
     
 <article class="post">
   <h1 class="post-title">
-    <a href="https://luciozanette.github.io/posts/first-blog/">First Blog</a>
+    <a href="https://luciozanette.github.io/posts/first-blog/">Quickly Finding Large Files</a>
   </h1>
-  <div class="post-meta"><time class="post-date">2025-05-09</time></div>
+  <div class="post-meta"><time class="post-date">2025-05-09</time><span class="post-author">Lucio Zanette</span></div>
 
-  
-    <span class="post-tags">
-      
-      #<a href="https://luciozanette.github.io/tags/"></a>&nbsp;
-      
-      #<a href="https://luciozanette.github.io/tags/"></a>&nbsp;
-      
-    </span>
   
   
 
 
   
 
-  <div class="post-content"></div>
+  <div class="post-content"><div>
+        <h1 id="quickly-finding-large-files">Quickly Finding Large Files<a href="#quickly-finding-large-files" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<h2 id="problemneed">Problem/Need<a href="#problemneed" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Your disk is running out of space, and you need to quickly identify which files are taking up the most room on your Linux system.</p>
+<h2 id="main-tipcommand">Main Tip/Command<a href="#main-tipcommand" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>Use the <code>find</code> command combined with <code>du</code> and <code>sort</code> to list files by size:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find / -type f -size +1G -print0 <span class="p">|</span> xargs -0 du -h <span class="p">|</span> sort -rh
+</span></span></code></pre></div><h2 id="brief-command-explanation">Brief Command Explanation<a href="#brief-command-explanation" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li><code>find /</code>: Starts searching from the root directory (<code>/</code>). You can replace <code>/</code> with a specific directory like <code>~</code> (your home directory) or <code>/var/log</code>.</li>
+<li><code>-type f</code>: Tells <code>find</code> to look only for files (<code>f</code> stands for file).</li>
+<li><code>-size +1G</code>: Filters files larger than 1 Gigabyte. You can adjust this (e.g., <code>+500M</code> for more than 500 Megabytes, <code>+100k</code> for more than 100 Kilobytes).</li>
+<li><code>-print0</code>: Outputs the file names separated by a null character. This is useful when filenames contain spaces or special characters.</li>
+<li><code>| xargs -0 du -h</code>: The pipe <code>|</code> sends the output of <code>find</code> to <code>xargs</code>. <code>xargs -0</code> reads null-separated input. <code>du -h</code> estimates the disk usage of each file in a human-readable format (e.g., 1K, 234M, 2G).</li>
+<li><code>| sort -rh</code>: Sends the output of <code>du</code> to <code>sort</code>. <code>sort -rh</code> sorts the lines in reverse order (<code>-r</code>, from largest to smallest), and interprets human-readable sizes (<code>-h</code>).</li>
+</ul>
+<h2 id="use-casesvariations">Use Cases/Variations<a href="#use-casesvariations" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li><strong>Search the current directory and subdirectories for files larger than 100MB:</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find . -type f -size +100M -print0 <span class="p">|</span> xargs -0 du -h <span class="p">|</span> sort -rh
+</span></span></code></pre></div><ul>
+<li><strong>List the 10 largest files in the <code>/var/log</code> directory:</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find /var/log -type f -print0 <span class="p">|</span> xargs -0 du -h <span class="p">|</span> sort -rh <span class="p">|</span> head -n <span class="m">10</span>
+</span></span></code></pre></div><p>(We add <code>| head -n 10</code> to display only the top 10 largest files.)</p>
+
+      </div></div>
 
   
     
