@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Terminal Dev</title>
+    <title>Terminal</title>
     <link>https://luciozanette.github.io/</link>
-    <description>Recent content on Terminal Dev</description>
+    <description>Recent content on Terminal</description>
     <generator>Hugo</generator>
-    <language>en-us</language>
+    <language>en</language>
     <lastBuildDate>Fri, 09 May 2025 17:20:08 -0300</lastBuildDate>
     <atom:link href="https://luciozanette.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
